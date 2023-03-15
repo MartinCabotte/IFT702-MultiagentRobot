@@ -264,55 +264,55 @@ def main(gx=14.0, gy=7.0):
     
     # lignes verticales
     
-    for i in np.arange(-1.8, 2.2,.4):
+    for i in np.arange(-1.8, 2.2,.35):
         obstacleList.append([5,i,.2]) 
     
-    for i in np.arange(0.2, 4,.4):
+    for i in np.arange(0.2, 4,.35):
         obstacleList.append([8,i,.2]) 
     
-    for i in np.arange(-1.8, 6,.4):
+    for i in np.arange(-1.8, 6,.35):
         obstacleList.append([12,i,.2]) 
     
-    for i in np.arange(4.2, 6,.4):
+    for i in np.arange(4.2, 6,.35):
         obstacleList.append([1.2,i,.2]) 
     
-    for i in np.arange(2.2, 6,.4):
+    for i in np.arange(2.2, 6,.35):
         obstacleList.append([-2,i,.2]) 
     
-    for i in np.arange(8.2, 14,.4):
+    for i in np.arange(8.2, 14,.35):
         obstacleList.append([12,i,.2]) 
     
-    for i in np.arange(6.2, 8,.4):
+    for i in np.arange(6.2, 8,.35):
         obstacleList.append([8,i,.2]) 
     
     
     # lignes horizontales
     
-    for i in np.arange(1.2, 5.2,.4):
+    for i in np.arange(1.2, 5.2,.35):
         obstacleList.append([i,2,.2])  
     
-    for i in np.arange(5.2, 12,.4):
+    for i in np.arange(5.2, 12,.35):
         obstacleList.append([i,6,.2])  
     
-    for i in np.arange(1.2, 8,.4):
+    for i in np.arange(1.2, 8,.35):
         obstacleList.append([i,4,.2])  
     
-    for i in np.arange(-1.8, 1.2,.4):
+    for i in np.arange(-1.8, 1.2,.35):
         obstacleList.append([i,6,.2])  
     
-    for i in np.arange(-6, 12,.4):
+    for i in np.arange(-6, 12,.35):
         obstacleList.append([i,14,.2])  
     
-    for i in np.arange(-2, 8,.4):
+    for i in np.arange(-2, 8,.35):
         obstacleList.append([i,8,.2])  
     
-    for i in np.arange(5, 12,.4):
+    for i in np.arange(5, 12,.35):
         obstacleList.append([i,10,.2]) 
     
-    for i in np.arange(-6, 3,.4):
+    for i in np.arange(-6, 3,.35):
         obstacleList.append([i,10,.2]) 
     
-    for i in np.arange(-6, -2,.4):
+    for i in np.arange(-6, -2,.35):
         obstacleList.append([i,2,.2]) 
         
         
