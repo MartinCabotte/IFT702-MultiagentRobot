@@ -12,7 +12,7 @@ import random
 import matplotlib.pyplot as plt
 import numpy as np
 
-show_animation = True
+show_animation = False
 
 
 class RRT:
@@ -46,10 +46,10 @@ class RRT:
                  goal,
                  obstacle_list,
                  rand_area,
-                 expand_dis=3.0,
+                 expand_dis=15.0,
                  path_resolution=0.5,
                  goal_sample_rate=5,
-                 max_iter=500,
+                 max_iter=50000,
                  play_area=None,
                  robot_radius=0.0,
                  ):
@@ -100,7 +100,7 @@ class RRT:
                    new_node, self.obstacle_list, self.robot_radius):
                 self.node_list.append(new_node)
 
-            if animation and i % 5 == 0:
+            if animation and i % 200 == 0:
                 self.draw_graph(rnd_node)
 
             if self.calc_dist_to_goal(self.node_list[-1].x,
@@ -111,7 +111,7 @@ class RRT:
                         final_node, self.obstacle_list, self.robot_radius):
                     return self.generate_final_course(len(self.node_list) - 1)
 
-            if animation and i % 5:
+            if animation and i % 200:
                 self.draw_graph(rnd_node)
 
         return None  # cannot find path
@@ -199,7 +199,7 @@ class RRT:
         plt.plot(self.start.x, self.start.y, "xr")
         plt.plot(self.end.x, self.end.y, "xr")
         plt.axis("equal")
-        plt.axis([-2, 15, -2, 15])
+        plt.axis([-20, 150, -20, 150])
         plt.grid(True)
         plt.pause(0.01)
 
@@ -237,7 +237,9 @@ class RRT:
         if node is None:
             return False
 
+        
         for (ox, oy, size) in obstacleList:
+                
             dx_list = [ox - x for x in node.path_x]
             dy_list = [oy - y for y in node.path_y]
             d_list = [dx * dx + dy * dy for (dx, dy) in zip(dx_list, dy_list)]
@@ -256,7 +258,7 @@ class RRT:
         return d, theta
 
 
-def main(gx=14.0, gy=7.0):
+def main(gx=140, gy=135):
     print("start " + __file__)
 
     # ====Search Path with RRT====
@@ -264,67 +266,95 @@ def main(gx=14.0, gy=7.0):
     
     # lignes verticales
     
-    for i in np.arange(-1.8, 2.2,.35):
-        obstacleList.append([5,i,.2]) 
+    for i in np.arange(-50, 22,3.5):
+        obstacleList.append([50,i,2]) 
     
-    for i in np.arange(0.2, 4,.35):
-        obstacleList.append([8,i,.2]) 
+    for i in np.arange(2, 40,3.5):
+        obstacleList.append([80,i,2]) 
     
-    for i in np.arange(-1.8, 6,.35):
-        obstacleList.append([12,i,.2]) 
+    for i in np.arange(-50, 60,3.5):
+        obstacleList.append([120,i,2]) 
     
-    for i in np.arange(4.2, 6,.35):
-        obstacleList.append([1.2,i,.2]) 
+    for i in np.arange(42, 60,3.5):
+        obstacleList.append([12,i,2]) 
     
-    for i in np.arange(2.2, 6,.35):
-        obstacleList.append([-2,i,.2]) 
+    for i in np.arange(22, 60,3.5):
+        obstacleList.append([-20,i,2]) 
     
-    for i in np.arange(8.2, 14,.35):
-        obstacleList.append([12,i,.2]) 
+    for i in np.arange(82, 140,3.5):
+        obstacleList.append([120,i,2]) 
     
-    for i in np.arange(6.2, 8,.35):
-        obstacleList.append([8,i,.2]) 
+    for i in np.arange(62, 80,3.5):
+        obstacleList.append([80,i,2]) 
     
     
     # lignes horizontales
     
-    for i in np.arange(1.2, 5.2,.35):
-        obstacleList.append([i,2,.2])  
+    for i in np.arange(12, 52,3.5):
+        obstacleList.append([i,20,2])  
     
-    for i in np.arange(5.2, 12,.35):
-        obstacleList.append([i,6,.2])  
+    for i in np.arange(52, 120,3.5):
+        obstacleList.append([i,60,2])  
     
-    for i in np.arange(1.2, 8,.35):
-        obstacleList.append([i,4,.2])  
+    for i in np.arange(12, 80,3.5):
+        obstacleList.append([i,40,2])  
     
-    for i in np.arange(-1.8, 1.2,.35):
-        obstacleList.append([i,6,.2])  
+    for i in np.arange(-18, 12,3.5):
+        obstacleList.append([i,60,2])  
     
-    for i in np.arange(-6, 12,.35):
-        obstacleList.append([i,14,.2])  
+    for i in np.arange(-60, 120,3.5):
+        obstacleList.append([i,140,2])  
     
-    for i in np.arange(-2, 8,.35):
-        obstacleList.append([i,8,.2])  
+    for i in np.arange(-20, 80,3.5):
+        obstacleList.append([i,80,2])  
     
-    for i in np.arange(5, 12,.35):
-        obstacleList.append([i,10,.2]) 
+    for i in np.arange(50, 120,3.5):
+        obstacleList.append([i,100,2]) 
     
-    for i in np.arange(-6, 3,.35):
-        obstacleList.append([i,10,.2]) 
+    for i in np.arange(-60, 30,3.5):
+        obstacleList.append([i,100,2]) 
     
-    for i in np.arange(-6, -2,.35):
-        obstacleList.append([i,2,.2]) 
+    for i in np.arange(-60, -20,3.5):
+        obstacleList.append([i,20,2]) 
+     
+    # obstacleList = []  
+    
+    # # lignes verticales
+    
+    # for i in np.arange(80, 120,3.5):
+    #     obstacleList.append([-30,i,2]) 
+    
+    # for i in np.arange(40, 80,3.5):
+    #     obstacleList.append([80,i,2]) 
         
+    # for i in np.arange(-50, 120,3.5):
+    #     obstacleList.append([150,i,2]) 
+    
+    
+    # # lignes horizontales
+    
+    # for i in np.arange(-30, 150,3.5):
+    #     obstacleList.append([i,120,2])  
+    
+    # for i in np.arange(-30, 30,3.5):
+    #     obstacleList.append([i,80,2])  
+    
+    # for i in np.arange(-60, 80,3.5):
+    #     obstacleList.append([i,40,2])  
+    
+        
+        
+           
         
         
     # Set Initial parameters
     rrt = RRT(
-        start=[-3, -1],
+        start=[-30, -10],
         goal=[gx, gy],
-        rand_area=[-2, 15],
+        rand_area=[-50, 145],
         obstacle_list=obstacleList,
         # play_area=[0, 10, 0, 14]
-        robot_radius=0.08
+        robot_radius=2
         )
     path = rrt.planning(animation=show_animation)
 
@@ -334,12 +364,11 @@ def main(gx=14.0, gy=7.0):
         print("found path!!")
 
         # Draw final path
-        if show_animation:
-            rrt.draw_graph()
-            plt.plot([x for (x, y) in path], [y for (x, y) in path], '-r')
-            plt.grid(True)
-            # plt.pause(0.01)  # Need for Mac
-            plt.show()
+        rrt.draw_graph()
+        plt.plot([x for (x, y) in path], [y for (x, y) in path], '-r')
+        plt.grid(True)
+        # plt.pause(0.01)  # Need for Mac
+        plt.show()
 
 
 if __name__ == '__main__':
